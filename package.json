@@ -20,10 +20,24 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "cypress:open": "cypress open"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": [
+      "plugin:@shopify/esnext",
+      "plugin:@shopify/typescript",
+      "plugin:@shopify/react",
+      "plugin:@shopify/prettier"
+    ],
+    "plugins": ["cypress"],
+    "rules": {
+      "@typescript-eslint/object-curly-spacing": "off",
+      "babel/object-curly-spacing": "off"
+    },
+    "env": {
+      "cypress/globals": true
+    }
   },
   "browserslist": {
     "production": [
@@ -36,5 +50,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@shopify/eslint-plugin": "^40.0.1",
+    "cypress": "^6.5.0",
+    "eslint-plugin-cypress": "^2.11.2"
   }
 }
