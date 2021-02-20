@@ -10,7 +10,9 @@
     "@types/node": "14.14.30",
     "@types/react": "17.0.2",
     "@types/react-dom": "17.0.1",
-    "prettier": "1.19.1",
+    "axios": "^0.21.1",
+    "immer": "^8.0.1",
+    "prettier": "2.2.1",
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-scripts": "4.0.2",
@@ -25,15 +27,21 @@
   },
   "eslintConfig": {
     "extends": [
+      "react-app",
       "plugin:@shopify/esnext",
       "plugin:@shopify/typescript",
       "plugin:@shopify/react",
       "plugin:@shopify/prettier"
     ],
-    "plugins": ["cypress"],
+    "plugins": [
+      "cypress"
+    ],
     "rules": {
       "@typescript-eslint/object-curly-spacing": "off",
-      "babel/object-curly-spacing": "off"
+      "babel/object-curly-spacing": "off",
+      "react-hooks/exhaustive-deps": "warn",
+      "@typescript-eslint/consistent-indexed-object-style": "off",
+      "@shopify/jsx-no-hardcoded-content": "off"
     },
     "env": {
       "cypress/globals": true
