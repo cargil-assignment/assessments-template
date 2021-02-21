@@ -1,52 +1,32 @@
-import { useEffect } from 'react';
-
-import { useLocalSlice, PayloadAction, castDraft } from '../utils/useLocalSlice';
+import { useEffect, useReducer } from 'react';
 
 type QueryKey = string;
-
 type PayloadCreator<Data> = () => Promise<Data>;
+type State<Data> = Record<QueryKey, QueryState<Data>>;
 
 interface QueryState<Data> {
     data: undefined | Data;
     isPending: boolean;
     error: null | unknown;
-    lastUpdated: null | number;
 }
 
 const initialState = {
+    data: undefined,
     isPending: true,
     error: null,
-    lastUpdated: null,
-    data: undefined,
 };
+
+type Action<Data> =
+    | { type: 'request'; queryKey: string }
+    | { type: 'fulfilled'; queryKey: string; payload: { data: Data } }
+    | { type: 'rejected'; queryKey: string; payload: { error: unknown } };
 
 /** naive implementation with no caching outside of the Component lifecycle */
 export const useQuery = <Data>(
     queryKey: QueryKey,
     payloadCreator: PayloadCreator<Data>,
 ): QueryState<Data> => {
-    const [state, dispatchActions] = useLocalSlice({
-        initialState: {} as Record<QueryKey, QueryState<Data>>,
-        reducers: {
-            request: (state) => {
-                if (!state[queryKey]) {
-                    state[queryKey] = initialState;
-                    return;
-                }
-
-                state[queryKey].isPending = true;
-                state[queryKey].error = null;
-            },
-            fulfilled: (state, { payload }: PayloadAction<{ data: Data }>) => {
-                state[queryKey].isPending = false;
-                state[queryKey].data = castDraft(payload.data);
-            },
-            rejected: (state, { payload }: PayloadAction<{ error: unknown }>) => {
-                state[queryKey].isPending = false;
-                state[queryKey].error = payload.error;
-            },
-        },
-    });
+    const [state, dispatch] = useReducer(reducer, {} as State<Data>);
 
     useEffect(() => {
         const isQueryAlreadyCached = Boolean(state[queryKey]);
@@ -54,15 +34,46 @@ export const useQuery = <Data>(
             // use cached data
             return;
         }
-        dispatchActions.request();
+        dispatch({ type: 'request', queryKey });
         payloadCreator()
             .then((data) => {
-                dispatchActions.fulfilled({ data });
+                dispatch({ type: 'fulfilled', queryKey, payload: { data } });
             })
             .catch((error) => {
-                dispatchActions.rejected({ error });
+                dispatch({ type: 'rejected', queryKey, payload: { error } });
             });
     }, [queryKey]);
 
-    return state[queryKey] ?? initialState;
+    return (state as State<Data>)[queryKey] ?? initialState;
 };
+
+function reducer<Data>(state: State<Data>, action: Action<Data>): State<Data> {
+    switch (action.type) {
+        case 'request':
+            return {
+                ...state,
+                [action.queryKey]: {
+                    ...initialState,
+                    data: state[action.queryKey]?.data ?? undefined,
+                },
+            };
+        case 'fulfilled':
+            return {
+                ...state,
+                [action.queryKey]: {
+                    ...state[action.queryKey],
+                    isPending: false,
+                    data: action.payload.data,
+                },
+            };
+        case 'rejected':
+            return {
+                ...state,
+                [action.queryKey]: {
+                    ...state[action.queryKey],
+                    isPending: false,
+                    error: action.payload.error,
+                },
+            };
+    }
+}

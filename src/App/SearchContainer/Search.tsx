@@ -37,7 +37,7 @@ export const Search: FC<Props> = ({ initialValue = '', onChange }) => {
                 <input
                     id="search"
                     type="search"
-                    className="w-full pl-10 pr-4 py-2 rounded-lg shadow focus:outline-none focus:shadow-outline text-gray-600 font-medium"
+                    className="w-full pl-10 pr-4 py-2 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-gray-600 focus:shadow-outline text-gray-600 font-medium "
                     placeholder="Search by country or country code"
                     aria-label="search"
                     value={value}

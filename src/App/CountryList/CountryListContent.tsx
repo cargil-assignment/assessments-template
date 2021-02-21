@@ -2,6 +2,7 @@ import type { FC } from 'react';
 import React from 'react';
 
 import { Country } from '../../api';
+import { TableCell } from '../components/TableCell';
 
 import { CountriesListItem } from './CountryListItem';
 
@@ -15,9 +16,9 @@ export const CountryListContent: FC<Props> = ({ countries, isPending, error }) =
     if (isPending) {
         return (
             <tr>
-                <td>
-                    <div className="mt-3">Loading, please wait.</div>
-                </td>
+                <TableCell>
+                    <div className="">Loading, please wait.</div>
+                </TableCell>
             </tr>
         );
     }
@@ -30,11 +31,11 @@ export const CountryListContent: FC<Props> = ({ countries, isPending, error }) =
 
         return (
             <tr>
-                <td>
+                <TableCell>
                     <div className="mt-3" data-cy="countries-fetch-error">
                         {errorMessage}
                     </div>
-                </td>
+                </TableCell>
             </tr>
         );
     }

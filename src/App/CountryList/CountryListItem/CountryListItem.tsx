@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 
 import { Country } from '../../../api';
-import { TableRow } from '../../components/TableRow';
+import { TableCell } from '../../components/TableCell';
 
 interface Props {
     country: Country;
@@ -10,7 +10,7 @@ interface Props {
 export const CountriesListItem: FC<Props> = ({ country }) => {
     return (
         <tr>
-            <TableRow>
+            <TableCell>
                 <div className="flex items-center">
                     <div className="flex-shrink-0 h-10 w-10">
                         <img
@@ -23,14 +23,14 @@ export const CountriesListItem: FC<Props> = ({ country }) => {
                         <div className="text-sm font-medium text-gray-900">{country.name}</div>
                     </div>
                 </div>
-            </TableRow>
-            <TableRow>
+            </TableCell>
+            <TableCell>
                 <div className="text-sm text-gray-900">{country.alpha3Code}</div>
-            </TableRow>
+            </TableCell>
 
-            <TableRow>
+            <TableCell>
                 <div className="text-sm text-gray-900">{country.population}</div>
-            </TableRow>
+            </TableCell>
         </tr>
     );
 };

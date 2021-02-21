@@ -3,6 +3,7 @@ import React, { FC } from 'react';
 import { Country } from '../../api';
 import { Table } from '../components/Table';
 import { TableBody } from '../components/TableBody';
+import { Sort, SortableColumns } from '../useSort';
 
 import { CountryListContent } from './CountryListContent';
 
@@ -10,26 +11,31 @@ interface Props {
     countries: Country[];
     isPending: boolean;
     error: unknown;
+    sort?: Sort;
+    onSort: (sortColumn: SortableColumns) => void;
 }
 
-const columns = [
-    {
-        label: 'Name',
-        id: 'name',
-    },
-    {
-        label: 'Country code',
-        id: 'code',
-    },
-    {
-        label: 'Population',
-        id: 'population',
-    },
-];
+export const CountryList: FC<Props> = ({ countries, isPending, error, onSort, sort }) => {
+    const columns = [
+        {
+            label: 'Name',
+            id: 'name',
+            onClick: () => onSort('name'),
+        },
+        {
+            label: 'Country code',
+            id: 'alpha3Code',
+            onClick: () => onSort('alpha3Code'),
+        },
+        {
+            label: 'Population',
+            id: 'population',
+            onClick: () => onSort('population'),
+        },
+    ];
 
-export const CountryList: FC<Props> = ({ countries, isPending, error }) => {
     return (
-        <Table columns={columns}>
+        <Table columns={columns} sort={sort}>
             <TableBody>
                 <CountryListContent countries={countries} isPending={isPending} error={error} />
             </TableBody>
