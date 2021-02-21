@@ -3,21 +3,17 @@ import React from 'react';
 import { useCountries } from '../api';
 
 import { CountryList } from './CountryList';
+import { Search } from './Search';
+import { useURLSearchFilter } from './useURLSearchFilter';
 
 export function App() {
-    const { countries = [], isPending, error } = useCountries();
+    const [searchFilter, setURLSearchFilter] = useURLSearchFilter();
+    const { countries = [], isPending, error } = useCountries({ searchFilter });
 
-    if (isPending) {
-        return <div>Loading, please wait.</div>;
-    }
-
-    if (error) {
-        return (
-            <div data-cy="countries-fetch-error">
-                An error has occurred when loading the countries. Sorry!
-            </div>
-        );
-    }
-
-    return <CountryList countries={countries} />;
+    return (
+        <>
+            <Search initialValue={searchFilter} onChange={setURLSearchFilter} />
+            <CountryList countries={countries} isPending={isPending} error={error} />
+        </>
+    );
 }

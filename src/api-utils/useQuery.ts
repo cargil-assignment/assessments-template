@@ -49,6 +49,11 @@ export const useQuery = <Data>(
     });
 
     useEffect(() => {
+        const isQueryAlreadyCached = Boolean(state[queryKey]);
+        if (isQueryAlreadyCached) {
+            // use cached data
+            return;
+        }
         dispatchActions.request();
         payloadCreator()
             .then((data) => {
