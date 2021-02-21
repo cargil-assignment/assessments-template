@@ -33,7 +33,7 @@ export const Search: FC<Props> = ({ initialValue = '', onChange }) => {
 
     return (
         <div className="flex-1 pr-4">
-            <div className="relative md:w-1/3">
+            <div className="relative md:w-1/2">
                 <input
                     id="search"
                     type="search"

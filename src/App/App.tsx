@@ -2,9 +2,9 @@ import React from 'react';
 
 import { useCountries } from '../api';
 
-import { CountryList } from './CountryList';
 import { Search } from './Search';
 import { useURLSearchFilter } from './useURLSearchFilter';
+import { CountryList } from './CountryList';
 
 export function App() {
     const [searchFilter, setURLSearchFilter] = useURLSearchFilter();

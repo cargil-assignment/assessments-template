@@ -6,14 +6,14 @@ type HandleSearchValue = (nextSearchFilterValue: string) => void;
 
 export const useURLSearchFilter = (): [string, HandleSearchValue] => {
     const [, forceUpdate] = useReducer((x) => x + 1, 0);
-    const { queryParams, setQueryParams } = queryParamService<{ filter: string }>();
+    const { queryParams, setQueryParams } = queryParamService<{ searchFilter: string }>();
 
     const handleUpdateURLSearchValue = (nextSearchFilterValue: string) => {
         setQueryParams({
-            filter: nextSearchFilterValue,
+            searchFilter: nextSearchFilterValue,
         });
         forceUpdate();
     };
 
-    return [queryParams.filter, handleUpdateURLSearchValue];
+    return [queryParams.searchFilter, handleUpdateURLSearchValue];
 };

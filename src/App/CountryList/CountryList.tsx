@@ -1,9 +1,10 @@
 import React, { FC } from 'react';
 
 import { Country } from '../../api';
+import { Table } from '../components/Table';
+import { TableBody } from '../components/TableBody';
 
-import { CountriesListItem } from './CountryListItem';
-import { CountriesListEmpty } from './CountryListEmpty';
+import { CountryListContent } from './CountryListContent';
 
 interface Props {
     countries: Country[];
@@ -11,29 +12,27 @@ interface Props {
     error: unknown;
 }
 
+const columns = [
+    {
+        label: 'Name',
+        id: 'name',
+    },
+    {
+        label: 'Country code',
+        id: 'code',
+    },
+    {
+        label: 'Population',
+        id: 'population',
+    },
+];
+
 export const CountryList: FC<Props> = ({ countries, isPending, error }) => {
-    if (isPending) {
-        return <div>Loading, please wait.</div>;
-    }
-
-    if (error) {
-        const errorMessage =
-            typeof error === 'string'
-                ? error
-                : 'An error has occurred when loading the countries. Sorry!';
-
-        return <div data-cy="countries-fetch-error">{errorMessage}</div>;
-    }
-
-    if (countries.length === 0) {
-        return <CountriesListEmpty />;
-    }
-
     return (
-        <>
-            {countries.map((country) => (
-                <CountriesListItem key={country.alpha3Code} country={country} />
-            ))}
-        </>
+        <Table columns={columns}>
+            <TableBody>
+                <CountryListContent countries={countries} isPending={isPending} error={error} />
+            </TableBody>
+        </Table>
     );
 };
