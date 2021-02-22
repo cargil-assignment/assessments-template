@@ -26,7 +26,7 @@ export const Table: FC<Props> = ({ children, columns, sort }) => {
                         <th
                             className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                             key={column.id}
-                            data-cy={column.id}
+                            data-cy={`${column.id}-column`}
                             onClick={column.onClick}
                         >
                             <div className="flex">

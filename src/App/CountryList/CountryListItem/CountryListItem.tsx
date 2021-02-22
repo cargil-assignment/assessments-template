@@ -17,7 +17,11 @@ export const CountriesListItem: FC<Props> = ({ country }) => {
 
     return (
         <>
-            <tr className="hover:bg-blue-50 cursor-pointer" onClick={handleSetExpanded}>
+            <tr
+                className="hover:bg-blue-50 cursor-pointer"
+                onClick={handleSetExpanded}
+                data-cy="country-list-item"
+            >
                 <TableCell>
                     <div className="flex items-center">
                         <div className="flex-shrink-0 h-10 w-10">
@@ -28,23 +32,34 @@ export const CountriesListItem: FC<Props> = ({ country }) => {
                             />
                         </div>
                         <div className="ml-4">
-                            <div className="text-sm font-medium text-gray-900">{country.name}</div>
+                            <div
+                                className="text-sm font-medium text-gray-900"
+                                data-cy="country-name"
+                            >
+                                {country.name}
+                            </div>
                         </div>
                     </div>
                 </TableCell>
                 <TableCell>
-                    <div className="text-sm text-gray-900">{country.alpha3Code}</div>
+                    <div className="text-sm text-gray-900" data-cy="country-code">
+                        {country.alpha3Code}
+                    </div>
                 </TableCell>
 
                 <TableCell>
-                    <div className="text-sm text-gray-900">{country.population}</div>
+                    <div className="text-sm text-gray-900" data-cy="country-population">
+                        {country.population}
+                    </div>
                 </TableCell>
             </tr>
-            <CountryListItemDetails
-                country={country}
-                setShowDetails={setShowDetailsModal}
-                showDetails={showDetailsModal}
-            />
+            {showDetailsModal && (
+                <CountryListItemDetails
+                    country={country}
+                    setShowDetails={setShowDetailsModal}
+                    showDetails={showDetailsModal}
+                />
+            )}
         </>
     );
 };

@@ -42,6 +42,7 @@ export const Search: FC<Props> = ({ initialValue = '', onChange }) => {
                     aria-label="search"
                     value={value}
                     onChange={handleOnChange}
+                    data-cy="search-input"
                 />
                 <div className="absolute top-0 left-0 inline-flex items-center p-2">
                     <SearchIcon />
