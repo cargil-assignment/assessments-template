@@ -7,19 +7,19 @@ import { CountryList } from './CountryList';
 import { useSort } from './useSort';
 
 export function App() {
-    const [searchFilter, setURLSearchFilter] = useURLSearchFilter();
+    const [URLSearchFilter, setURLSearchFilter] = useURLSearchFilter();
     const [sort, toggleSort] = useSort();
     const { countries = [], isPending, error } = useCountries({
-        searchFilter,
+        searchFilter: URLSearchFilter,
         sort,
     });
 
     return (
-        <div className="container flex items-center justify-center">
-            <div className="w-full lg:w-4/6 shadow-md rounded my-6">
+        <div className="container flex justify-center">
+            <div className="w-full lg:w-4/6 shadow-lg rounded my-6">
                 <div className="flex flex-col mx-auto">
                     <SearchContainer
-                        initialValue={searchFilter}
+                        initialValue={URLSearchFilter}
                         onChange={setURLSearchFilter}
                         countries={countries}
                     />

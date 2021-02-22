@@ -4,9 +4,9 @@ import { Country } from './typings';
 
 const ALPHA_2_CODE_LENGTH = 2;
 const ALPHA_3_CODE_LENGTH = 3;
+const ALL_BASE_URL = 'https://restcountries.eu/rest/v2/all';
 const BY_NAME_BASE_URL = 'https://restcountries.eu/rest/v2/name';
 const BY_CODE_BASE_URL = 'https://restcountries.eu/rest/v2/alpha';
-const ALL_BASE_URL = 'https://restcountries.eu/rest/v2/all';
 
 type BaseUrl = typeof ALL_BASE_URL | typeof BY_NAME_BASE_URL | typeof BY_CODE_BASE_URL;
 

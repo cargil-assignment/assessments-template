@@ -1,9 +1,3 @@
-/**
- * Util function which:
- * @returns queryParams: a key value object of the query params in the url;
- * @returns setQueryParams: a function to modify the query params in the url;
- */
-
 export function queryParamService<
     QueryParamDictionary extends Record<string, string | null | undefined>
 >(): {

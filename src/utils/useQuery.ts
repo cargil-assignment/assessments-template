@@ -21,31 +21,6 @@ type Action<Data> =
     | { type: 'fulfilled'; queryKey: string; payload: { data: Data } }
     | { type: 'rejected'; queryKey: string; payload: { error: unknown } };
 
-/** naive implementation with no caching outside of the Component lifecycle, nor requests deduplication */
-export const useQuery = <Data>(
-    queryKey: QueryKey,
-    payloadCreator: PayloadCreator<Data>,
-): QueryState<Data> => {
-    const [state, dispatch] = useReducer(reducer, {} as State<Data>);
-
-    useEffect(() => {
-        const isQueryAlreadyCached = Boolean(state[queryKey]);
-        if (isQueryAlreadyCached) {
-            return;
-        }
-        dispatch({ type: 'request', queryKey });
-        payloadCreator()
-            .then((data) => {
-                dispatch({ type: 'fulfilled', queryKey, payload: { data } });
-            })
-            .catch((error) => {
-                dispatch({ type: 'rejected', queryKey, payload: { error } });
-            });
-    }, [queryKey]);
-
-    return (state as State<Data>)[queryKey] ?? initialState;
-};
-
 function reducer<Data>(state: State<Data>, action: Action<Data>): State<Data> {
     switch (action.type) {
         case 'request':
@@ -76,3 +51,27 @@ function reducer<Data>(state: State<Data>, action: Action<Data>): State<Data> {
             };
     }
 }
+
+export const useQuery = <Data>(
+    queryKey: QueryKey,
+    payloadCreator: PayloadCreator<Data>,
+): QueryState<Data> => {
+    const [state, dispatch] = useReducer(reducer, {} as State<Data>);
+
+    useEffect(() => {
+        const isQueryAlreadyCached = Boolean(state[queryKey]);
+        if (isQueryAlreadyCached) {
+            return;
+        }
+        dispatch({ type: 'request', queryKey });
+        payloadCreator()
+            .then((data) => {
+                dispatch({ type: 'fulfilled', queryKey, payload: { data } });
+            })
+            .catch((error) => {
+                dispatch({ type: 'rejected', queryKey, payload: { error } });
+            });
+    }, [queryKey]);
+
+    return (state as State<Data>)[queryKey] ?? initialState;
+};

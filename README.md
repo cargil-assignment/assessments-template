@@ -5,7 +5,7 @@ https://cargil-assessments.vercel.app/
 
 # Submission notes
 
-Differences to specs:
+Differences to the given requirements:
 - Country population was used instead of capital city population, because the given
 resource does not provide the capital city population data. 
   

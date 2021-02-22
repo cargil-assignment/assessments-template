@@ -13,7 +13,7 @@ export const SearchCount: FC<Props> = ({ countries }) => {
     return (
         <span className="ml-auto mr-2">
             <span className="font-bold text-gray-900">{countries.length}</span> {countryPluralized}{' '}
-            found.
+            found
         </span>
     );
 };
