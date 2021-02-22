@@ -67,5 +67,16 @@ describe('sortService', () => {
                 { name: 'Italy', population: 100 },
             ]);
         });
+
+        it('throws when the sort order is unknown', () => {
+            const countries = [
+                { name: 'Switzerland', population: 10 },
+                { name: 'Italy', population: 100 },
+            ] as Country[];
+            // @ts-expect-error unknown sortOrder
+            const sort: Sort = { sortColumn: 'name', sortOrder: 'TYPO' };
+
+            expect(() => sortCountriesIfNeeded(countries, sort)).toThrow();
+        });
     });
 });

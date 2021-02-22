@@ -33,6 +33,13 @@ describe('countriesApiService', () => {
 
             expect(() => fetchAll()).rejects.toBe('Not Found');
         });
+
+        it('throws an error when the error is unknown', async () => {
+            const error = new Error('hi');
+            getMock.mockRejectedValueOnce(error);
+
+            expect(() => fetchAll()).rejects.toBe(error);
+        });
     });
 
     describe('fetchByName', () => {

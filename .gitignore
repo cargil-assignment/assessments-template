@@ -7,6 +7,7 @@
 
 # testing
 /coverage
+.nyc_output
 
 # production
 /build
@@ -24,3 +25,8 @@ yarn-debug.log*
 yarn-error.log*
 
 src/tailwind.output.css
+src/react-app-env.d.ts
+
+# cypress
+cypress/screenshots
+cypress/videos

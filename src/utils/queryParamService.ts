@@ -32,11 +32,7 @@ function computeNewUrl<T extends Record<string, string | null | undefined>>(newP
     Object.keys(newParams).forEach((key: string) => {
         const value = newParams[key];
         if (value !== null && value !== undefined && value !== '') {
-            if (typeof value === 'object') {
-                url.searchParams.set(key, JSON.stringify(value));
-            } else {
-                url.searchParams.set(key, value);
-            }
+            url.searchParams.set(key, value);
         } else {
             url.searchParams.delete(key);
         }
