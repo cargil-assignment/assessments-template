@@ -1,3 +1,24 @@
+# Deployment URL
+
+https://cargil-assessments.vercel.app/
+
+
+# Submission notes
+
+Differences to specs:
+- Country population was used instead of capital city population, because the given
+resource does not provide the capital city population data. 
+  
+- In the detailed country view, no "related info" of the capital city is shown, due to a lack 
+of such data in the resource dataset.
+
+Dependencies:
+
+- Runtime dependencies used are: React, axios and Tailwind CSS.
+- Dev dependencies used are: Cypress, Istanbul (for combined coverage), and @shopify/eslint-plugin for linting.
+
+The tests were written with jest, Cypress and RTL.
+
 # Custom commands
 
 Run the following command to open Cypress.
@@ -16,6 +37,9 @@ yarn start:cypress:coverage
 ```s
 yarn coverage:merged:report
 ```
+
+Combined coverage is 100% as of submission date of 22.02.21
+
 
 # Assessment Documentation
 
