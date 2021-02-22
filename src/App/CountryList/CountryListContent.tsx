@@ -12,22 +12,24 @@ interface Props {
     error: unknown;
 }
 
+const GENERIC_UNKNOWN_ERROR_MESSAGE = 'An error has occurred when loading the countries. Sorry!';
+
 export const CountryListContent: FC<Props> = ({ countries, isPending, error }) => {
     if (isPending) {
         return (
             <tr>
                 <TableCell>
-                    <div>Loading, please wait.</div>
+                    <div className="mt-3">Loading, please wait.</div>
                 </TableCell>
             </tr>
         );
     }
 
     if (error) {
-        const errorMessage =
-            typeof error === 'string'
-                ? error
-                : 'An error has occurred when loading the countries. Sorry!';
+        const showAPIErrorMessage = typeof error === 'string';
+        const errorMessage = showAPIErrorMessage
+            ? (error as string)
+            : GENERIC_UNKNOWN_ERROR_MESSAGE;
 
         return (
             <tr>

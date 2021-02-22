@@ -11,7 +11,7 @@ interface Props {
 
 export const CountriesListItem: FC<Props> = ({ country }) => {
     const [showDetailsModal, setShowDetailsModal] = useState(false);
-    const handleSetExpanded = () => {
+    const handleShowDetailsModal = () => {
         setShowDetailsModal((previousValue) => !previousValue);
     };
 
@@ -19,7 +19,7 @@ export const CountriesListItem: FC<Props> = ({ country }) => {
         <>
             <tr
                 className="hover:bg-blue-50 cursor-pointer"
-                onClick={handleSetExpanded}
+                onClick={handleShowDetailsModal}
                 data-cy="country-list-item"
             >
                 <TableCell>
@@ -29,6 +29,7 @@ export const CountriesListItem: FC<Props> = ({ country }) => {
                                 src={country.flag}
                                 alt={`${country.name}-flag`}
                                 className="h-10 w-10"
+                                loading="lazy"
                             />
                         </div>
                         <div className="ml-4">
