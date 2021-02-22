@@ -5,20 +5,18 @@ import { SortStates } from '../useSort';
 
 interface Props {
     sortOrder: SortStates;
-    active: boolean;
 }
 
-export const SortIcon: FC<Props> = ({ active, sortOrder }) => {
-    const color = active ? 'blue' : 'grey';
-
+export const SortIcon: FC<Props> = ({ sortOrder }) => {
     if (sortOrder === 'DESC') {
         return (
             <svg
                 width={20}
                 xmlns="http://www.w3.org/2000/svg"
-                fill={color}
-                stroke={color}
+                fill="grey"
+                stroke="grey"
                 viewBox="0 0 24 24"
+                data-cy="desc-sort-icon"
             >
                 <path
                     strokeLinecap="round"
@@ -35,9 +33,10 @@ export const SortIcon: FC<Props> = ({ active, sortOrder }) => {
             <svg
                 width={20}
                 xmlns="http://www.w3.org/2000/svg"
-                fill={color}
-                stroke={color}
+                fill="grey"
+                stroke="grey"
                 viewBox="0 0 24 24"
+                data-cy="asc-sort-icon"
             >
                 <path
                     strokeLinecap="round"

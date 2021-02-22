@@ -1,5 +1,7 @@
 import type { FC } from 'react';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+
+import { useDebounce } from '../../utils/useDebounce';
 
 import { SearchIcon } from './SearchIcon';
 
@@ -8,24 +10,11 @@ interface Props {
     onChange: (nextValue: string) => void;
 }
 
-const DEBOUNCE_TIME = 500;
+const DEBOUNCE_DURATION = 500;
 
 export const Search: FC<Props> = ({ initialValue = '', onChange }) => {
     const [value, setValue] = useState(initialValue);
-    const [timer, setTimer] = useState<NodeJS.Timer | undefined>();
-
-    /** debounce would be extracted to a reusable hook in a real application */
-    useEffect(() => {
-        if (timer) {
-            clearTimeout(timer);
-        }
-
-        setTimer(
-            setTimeout(() => {
-                onChange(value);
-            }, DEBOUNCE_TIME),
-        );
-    }, [value]);
+    useDebounce(value, () => onChange(value), DEBOUNCE_DURATION);
 
     const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
         setValue(event.target.value);

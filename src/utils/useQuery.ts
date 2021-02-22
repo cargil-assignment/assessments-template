@@ -21,7 +21,7 @@ type Action<Data> =
     | { type: 'fulfilled'; queryKey: string; payload: { data: Data } }
     | { type: 'rejected'; queryKey: string; payload: { error: unknown } };
 
-/** naive implementation with no caching outside of the Component lifecycle */
+/** naive implementation with no caching outside of the Component lifecycle, nor requests deduplication */
 export const useQuery = <Data>(
     queryKey: QueryKey,
     payloadCreator: PayloadCreator<Data>,

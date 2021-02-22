@@ -1,3 +1,22 @@
+# Custom commands
+
+Run the following command to open Cypress.
+
+```s
+yarn start
+yarn cypress
+```
+
+Run in separate processes the following commands to generate the combined cypress + jest coverage.
+
+```s
+yarn start:cypress:coverage
+```
+
+```s
+yarn coverage:merged:report
+```
+
 # Assessment Documentation
 
 The main goal of this assessment is to create a React Application using TypeScript in order to show a list of countries, and then showing for each country the data associated to it.  

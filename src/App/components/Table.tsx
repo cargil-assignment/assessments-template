@@ -22,22 +22,25 @@ export const Table: FC<Props> = ({ children, columns, sort }) => {
         <table className="table-fixed w-full min-w-max divide-y divide-gray-200 mt-2">
             <thead className="bg-gray-50 cursor-pointer">
                 <tr>
-                    {columns.map((column) => (
-                        <th
-                            className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                            key={column.id}
-                            data-cy={`${column.id}-column`}
-                            onClick={column.onClick}
-                        >
-                            <div className="flex">
-                                <span className="mr-2">{column.label}</span>
-                                <SortIcon
-                                    active={sort?.sortColumn === column.id}
-                                    sortOrder={sort?.sortOrder}
-                                />
-                            </div>
-                        </th>
-                    ))}
+                    {columns.map((column) => {
+                        const isColumnSortingActive = sort?.sortColumn === column.id;
+
+                        return (
+                            <th
+                                className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                key={column.id}
+                                data-cy={`${column.id}-column`}
+                                onClick={column.onClick}
+                            >
+                                <div className="flex">
+                                    <span className="mr-2">{column.label}</span>
+                                    {isColumnSortingActive && (
+                                        <SortIcon sortOrder={sort?.sortOrder} />
+                                    )}
+                                </div>
+                            </th>
+                        );
+                    })}
                 </tr>
             </thead>
             {children}

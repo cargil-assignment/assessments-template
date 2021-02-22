@@ -1,8 +1,8 @@
 /**
- * Util function which returns:
- * - queryParams: a key value object of the query params in the url;
- * - setQueryParams: a function to modify the query params in the url;
- * */
+ * Util function which:
+ * @returns queryParams: a key value object of the query params in the url;
+ * @returns setQueryParams: a function to modify the query params in the url;
+ */
 
 export function queryParamService<
     QueryParamDictionary extends Record<string, string | null | undefined>
@@ -14,7 +14,7 @@ export function queryParamService<
     const urlSearchParams = new URLSearchParams(search);
     return {
         queryParams: Array.from(urlSearchParams.keys()).reduce(
-            (result, value) => ({ ...result, [value]: urlSearchParams.get(value) ?? '' }),
+            (result, value) => ({ ...result, [value]: urlSearchParams.get(value) }),
             {} as QueryParamDictionary,
         ),
         setQueryParams: (newParams) => {

@@ -1,4 +1,4 @@
-import { useQuery } from '../api-utils/useQuery';
+import { useQuery } from '../utils/useQuery';
 import { Country } from '../api/typings';
 import { fetchAll, fetchByCode, fetchByName, shouldFetchByCode } from '../api/countriesApiService';
 
