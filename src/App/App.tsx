@@ -15,23 +15,21 @@ export function App() {
     });
 
     return (
-        <div className="min-w-screen flex items-center justify-center overflow-hidden">
-            <div className="w-full lg:w-4/6">
-                <div className="shadow-md rounded my-6">
-                    <div className="flex flex-col mx-auto">
-                        <SearchContainer
-                            initialValue={searchFilter}
-                            onChange={setURLSearchFilter}
-                            countries={countries}
-                        />
-                        <CountryList
-                            countries={countries}
-                            isPending={isPending}
-                            error={error}
-                            onSort={toggleSort}
-                            sort={sort}
-                        />
-                    </div>
+        <div className="container flex items-center justify-center">
+            <div className="w-full lg:w-4/6 shadow-md rounded my-6">
+                <div className="flex flex-col mx-auto">
+                    <SearchContainer
+                        initialValue={searchFilter}
+                        onChange={setURLSearchFilter}
+                        countries={countries}
+                    />
+                    <CountryList
+                        countries={countries}
+                        isPending={isPending}
+                        error={error}
+                        onSort={toggleSort}
+                        sort={sort}
+                    />
                 </div>
             </div>
         </div>
