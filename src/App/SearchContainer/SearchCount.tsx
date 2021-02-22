@@ -8,11 +8,7 @@ interface Props {
 }
 
 export const SearchCount: FC<Props> = ({ countries }) => {
-    if (countries.length === 0) {
-        return null;
-    }
-
-    const countryPluralized = countries.length > 1 ? 'countries' : 'country';
+    const countryPluralized = countries.length === 1 ? 'country' : 'countries';
 
     return (
         <span className="ml-auto mr-2">
