@@ -15,19 +15,25 @@ export function App() {
     });
 
     return (
-        <>
-            <SearchContainer
-                initialValue={searchFilter}
-                onChange={setURLSearchFilter}
-                countries={countries}
-            />
-            <CountryList
-                countries={countries}
-                isPending={isPending}
-                error={error}
-                onSort={toggleSort}
-                sort={sort}
-            />
-        </>
+        <div className="min-w-screen flex items-center justify-center">
+            <div className="w-full lg:w-5/6">
+                <div className="shadow-md rounded my-6">
+                    <div className="flex flex-col mx-auto">
+                        <SearchContainer
+                            initialValue={searchFilter}
+                            onChange={setURLSearchFilter}
+                            countries={countries}
+                        />
+                        <CountryList
+                            countries={countries}
+                            isPending={isPending}
+                            error={error}
+                            onSort={toggleSort}
+                            sort={sort}
+                        />
+                    </div>
+                </div>
+            </div>
+        </div>
     );
 }

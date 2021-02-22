@@ -6,5 +6,5 @@ interface Props {
 }
 
 export const TableCell: FC<Props> = ({ children }) => (
-    <td className="px-6 py-4 whitespace-nowrap">{children}</td>
+    <td className="px-6 py-4 break-words">{children}</td>
 );

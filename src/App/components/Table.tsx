@@ -19,12 +19,11 @@ interface Props {
 
 export const Table: FC<Props> = ({ children, columns, sort }) => {
     return (
-        <table className="min-w-full divide-y divide-gray-200 mt-2">
+        <table className="table-fixed w-full min-w-max divide-y divide-gray-200 mt-2">
             <thead className="bg-gray-50 cursor-pointer">
                 <tr>
                     {columns.map((column) => (
                         <th
-                            scope="col"
                             className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                             key={column.id}
                             data-cy={column.id}

@@ -1,12 +1,12 @@
 import axios from 'axios';
 
-import { fetchAll, fetchByCode, fetchByName, shouldFetchByCode } from '../countryApiService';
+import { fetchAll, fetchByCode, fetchByName, shouldFetchByCode } from '../countriesApiService';
 
 jest.mock('axios');
 
 const getMock = axios.get as jest.Mock;
 
-describe('countryApiService', () => {
+describe('countriesApiService', () => {
     describe('fetchAll', () => {
         it('fetches and returns the full list of countries', async () => {
             const data = [{ name: 'Switzerland' }, { name: 'italy' }];

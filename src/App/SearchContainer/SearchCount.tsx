@@ -15,7 +15,7 @@ export const SearchCount: FC<Props> = ({ countries }) => {
     const countryPluralized = countries.length > 1 ? 'countries' : 'country';
 
     return (
-        <span className="ml-auto">
+        <span className="ml-auto mr-2">
             <span className="font-bold text-gray-900">{countries.length}</span> {countryPluralized}{' '}
             found.
         </span>

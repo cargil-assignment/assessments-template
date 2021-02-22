@@ -17,7 +17,7 @@ export const CountryListContent: FC<Props> = ({ countries, isPending, error }) =
         return (
             <tr>
                 <TableCell>
-                    <div className="">Loading, please wait.</div>
+                    <div>Loading, please wait.</div>
                 </TableCell>
             </tr>
         );
