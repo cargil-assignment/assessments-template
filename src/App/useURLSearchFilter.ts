@@ -1,4 +1,4 @@
-import { useReducer } from 'react';
+import { useEffect, useReducer } from 'react';
 
 import { queryParamService } from '../utils';
 
@@ -14,6 +14,15 @@ export const useURLSearchFilter = (): [string, HandleSearchValue] => {
         });
         forceUpdate();
     };
+
+    function handleChangeOnBrowserBackOrForwardNavigation() {
+        forceUpdate();
+    }
+    useEffect(() => {
+        window.onpopstate = handleChangeOnBrowserBackOrForwardNavigation;
+        return () =>
+            window.removeEventListener('onpopstate', handleChangeOnBrowserBackOrForwardNavigation);
+    });
 
     return [queryParams.searchFilter, handleUpdateURLSearchValue];
 };
