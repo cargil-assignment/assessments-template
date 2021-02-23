@@ -3,7 +3,7 @@ import type { Country } from '../api';
 import { fetchAll, fetchByCode, fetchByName, shouldFetchByCode } from '../api';
 
 import { sortCountriesIfNeeded } from './sortService';
-import { Sort } from './useSort';
+import type { Sort } from './useSort';
 
 interface UseCountriesOptions {
     searchFilter: string;

@@ -1,6 +1,6 @@
 import type { Country } from '../api';
 
-import { Sort, SortableColumns, SortStates } from './useSort';
+import type { Sort, SortableColumns, SortStates } from './useSort';
 
 export function sortCountriesIfNeeded(
     countries: Country[] | undefined,

@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 
 import type { Country } from '../../api';
 import { Table, TableBody } from '../components';
-import { Sort, SortableColumns } from '../useSort';
+import type { Sort, SortableColumns } from '../useSort';
 
 import { CountryListContent } from './CountryListContent';
 

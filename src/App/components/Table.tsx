@@ -1,7 +1,7 @@
 import type { FC, ReactNode } from 'react';
 import React from 'react';
 
-import { Sort } from '../useSort';
+import type { Sort } from '../useSort';
 
 import { SortIcon } from './SortIcon';
 
