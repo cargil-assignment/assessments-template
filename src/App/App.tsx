@@ -19,7 +19,7 @@ export function App() {
             <div className="w-full lg:w-4/6 shadow-lg rounded my-6">
                 <div className="flex flex-col mx-auto">
                     <SearchContainer
-                        initialValue={URLSearchFilter}
+                        URLSearchFilter={URLSearchFilter}
                         onChange={setURLSearchFilter}
                         countries={countries}
                     />

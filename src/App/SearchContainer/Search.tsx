@@ -1,24 +1,31 @@
 import type { FC } from 'react';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { useDebounce } from '../../utils';
 
 import { SearchIcon } from './SearchIcon';
 
 interface Props {
-    initialValue: string;
+    URLSearchFilter: string;
     onChange: (nextValue: string) => void;
 }
 
 const DEBOUNCE_DURATION = 500;
 
-export const Search: FC<Props> = ({ initialValue = '', onChange }) => {
-    const [value, setValue] = useState(initialValue);
+export const Search: FC<Props> = ({ URLSearchFilter = '', onChange }) => {
+    const [value, setValue] = useState(URLSearchFilter);
     useDebounce(value, () => onChange(value), DEBOUNCE_DURATION);
 
     const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
         setValue(event.target.value);
     };
+
+    useEffect(() => {
+        if (URLSearchFilter === value) {
+            return;
+        }
+        setValue(URLSearchFilter);
+    }, [URLSearchFilter]);
 
     return (
         <div className="flex-1 pr-4">

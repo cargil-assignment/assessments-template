@@ -22,7 +22,7 @@ export const useURLSearchFilter = (): [string, HandleSearchValue] => {
         window.onpopstate = handleChangeOnBrowserBackOrForwardNavigation;
         return () =>
             window.removeEventListener('onpopstate', handleChangeOnBrowserBackOrForwardNavigation);
-    });
+    }, []);
 
     return [queryParams.searchFilter, handleUpdateURLSearchValue];
 };
