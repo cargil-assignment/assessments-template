@@ -1,4 +1,4 @@
-import { Country } from '../api';
+import type { Country } from '../api';
 
 import { Sort, SortableColumns, SortStates } from './useSort';
 

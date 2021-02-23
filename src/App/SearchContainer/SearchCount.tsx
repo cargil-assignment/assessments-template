@@ -1,7 +1,7 @@
 import type { FC } from 'react';
 import React from 'react';
 
-import { Country } from '../../api';
+import type { Country } from '../../api';
 
 interface Props {
     countries: Country[];

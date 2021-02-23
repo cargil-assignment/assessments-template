@@ -1,8 +1,8 @@
 import type { FC } from 'react';
 import React from 'react';
 
-import { Country } from '../../api';
-import { TableCell } from '../components/TableCell';
+import type { Country } from '../../api';
+import { TableCell } from '../components';
 
 import { CountriesListItem } from './CountryListItem';
 

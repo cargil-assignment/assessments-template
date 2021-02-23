@@ -1,8 +1,7 @@
 import React, { FC } from 'react';
 
-import { Country } from '../../api';
-import { Table } from '../components/Table';
-import { TableBody } from '../components/TableBody';
+import type { Country } from '../../api';
+import { Table, TableBody } from '../components';
 import { Sort, SortableColumns } from '../useSort';
 
 import { CountryListContent } from './CountryListContent';

@@ -1,7 +1,7 @@
 import type { FC } from 'react';
 import React, { useState } from 'react';
 
-import { useDebounce } from '../../utils/useDebounce';
+import { useDebounce } from '../../utils';
 
 import { SearchIcon } from './SearchIcon';
 

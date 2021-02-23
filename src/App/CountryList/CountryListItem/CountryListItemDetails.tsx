@@ -1,8 +1,8 @@
 import type { Dispatch, FC, SetStateAction } from 'react';
 import React from 'react';
 
-import { Modal } from '../../components/Modal';
-import { Country } from '../../../api';
+import { Modal } from '../../components';
+import type { Country } from '../../../api';
 
 interface Props {
     showDetails: boolean;

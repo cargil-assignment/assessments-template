@@ -1,7 +1,7 @@
 import React, { FC, useState } from 'react';
 
-import { Country } from '../../../api';
-import { TableCell } from '../../components/TableCell';
+import type { Country } from '../../../api';
+import { TableCell } from '../../components';
 
 import { CountryListItemDetails } from './CountryListItemDetails';
 

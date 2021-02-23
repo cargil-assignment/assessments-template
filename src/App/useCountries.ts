@@ -1,6 +1,6 @@
-import { useQuery } from '../utils/useQuery';
-import { Country } from '../api/typings';
-import { fetchAll, fetchByCode, fetchByName, shouldFetchByCode } from '../api/countriesApiService';
+import { useQuery } from '../utils';
+import type { Country } from '../api';
+import { fetchAll, fetchByCode, fetchByName, shouldFetchByCode } from '../api';
 
 import { sortCountriesIfNeeded } from './sortService';
 import { Sort } from './useSort';

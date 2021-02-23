@@ -1,6 +1,6 @@
 import { useReducer } from 'react';
 
-import { queryParamService } from '../utils/queryParamService';
+import { queryParamService } from '../utils';
 
 type HandleSearchValue = (nextSearchFilterValue: string) => void;
 

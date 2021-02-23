@@ -1,6 +1,6 @@
 import axios, { AxiosError } from 'axios';
 
-import { Country } from './typings';
+import type { Country } from './typings';
 
 const ALPHA_2_CODE_LENGTH = 2;
 const ALPHA_3_CODE_LENGTH = 3;
