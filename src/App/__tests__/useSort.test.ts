@@ -1,21 +1,11 @@
 import { act, renderHook } from '@testing-library/react-hooks';
-import { queryParamService } from '../../utils/queryParamService';
 
+import { queryParamService } from '../../utils';
 import { useSort } from '../useSort';
 
 jest.mock('../../utils/queryParamService');
 
 const queryParamServiceMock = queryParamService as jest.Mock;
-
-/* setup to be able to mutate window.location.search in JSDOM */
-const location = {
-    ...window.location,
-    search: '?searchFilter=CH',
-};
-Object.defineProperty(window, 'location', {
-    writable: true,
-    value: location,
-});
 
 describe('useSort', () => {
     it('returns sortColumn and sortOrder from the sort query param', () => {
